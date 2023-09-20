@@ -1,10 +1,13 @@
 body {
   margin: 0;
+ 
+  --font: 'Ubuntu', sans-serif;
 
-  --fill-color: beige;
+  --fill-color: rgba(191, 236, 255, .3);
+  --buttons-color: rgba(191, 236, 255, 0);
   --borders-color: rgb(175 175 41);
-  --focus-color: rgb(149 149 13);
-  --font-color: gray;
+  --focus-color: rgba(13, 82, 115, .5);
+  --font-color: rgba(13, 82, 115, 1);
 }
 
 .page {
@@ -15,7 +18,17 @@ body {
   flex-direction: column;
   align-items: center;
   padding-top: 10%;
+
+  color: var(--font-color);
+  font-family: var(--font);
 }
+
+@import url('../src/blocks/button/button.css');
+@import url('../src/blocks/task-item/task-item.css');
+
+/* 
+
+
 
 .form {
   min-width: 70%;
@@ -84,4 +97,4 @@ body {
   color: var(--font-color);
   border: 1px solid var(--borders-color);
   background-color: var(--fill-color);
-}
+} */

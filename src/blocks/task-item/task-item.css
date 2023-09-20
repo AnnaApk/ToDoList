@@ -1,0 +1,9 @@
+.task-item {
+  display: flex;
+  min-width: 80vw;
+  justify-content: space-between;
+}
+
+.task-item_title {
+  min-width: 55%;
+}
