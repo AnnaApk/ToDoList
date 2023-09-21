@@ -9,7 +9,7 @@ export default function Form ({addTask}) {
   const [date, setDate] = useState(null);
 
   const handleTaskChange = (e) => {
-    setTaskInput(e.currentTarget.value)
+    setTaskInput((e.currentTarget.value))
   }
 
   const handleAdding = (e) => {
@@ -20,18 +20,24 @@ export default function Form ({addTask}) {
   }
 
   return (
-    <form>
+    <form className="form">
 
-      <Input placeholder="task" onChange={handleTaskChange} value={taskInput} />
+      <Input 
+        placeholder="task" 
+        onChange={handleTaskChange} 
+        value={taskInput} 
+        className="edit-form_field"  
+      />
 
       <DatePicker 
-        onChange={(date) => setDate(date ? date.format('YYYY-MM-DD') : null)} 
+        onChange={(date) => setDate(date ? date : null)} 
+        className="edit-form_field"
         // value={date}
       />
 
       <SelectList />
 
-      <button className="button" onClick={handleAdding} type="Submit"> ADD </button>
+      <button className="button" onClick={handleAdding} type="Submit"> ADD TASK </button>
 
     </form>
   )

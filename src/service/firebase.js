@@ -20,7 +20,7 @@ class Api {
     .then(this._getResponseData)
   }
 
-  addTask({task, dateAdding, date, owner}) {
+  addTask({task, dateAdding, date, owner, isDone}) {
     //console.log('req')
     return fetch(`${this._baseUrl}tasks.json`, {
       method: 'POST',
@@ -31,7 +31,8 @@ class Api {
         task,
         dateAdding,
         date,
-        owner
+        owner,
+        isDone
       })
     })
     .then(this._getResponseData)
@@ -48,17 +49,17 @@ class Api {
     .then(this._getResponseData)
   }
 
-  patchTask({id, task, date, owner}) {
-    //console.log('req', id)
+  patchTask({id, task, date}) {
+    console.log('req', id, date)
     return fetch(`${this._baseUrl}tasks/${id}.json`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
+        id,
         task,
         date,
-        owner
       })
     })
     .then(this._getResponseData)

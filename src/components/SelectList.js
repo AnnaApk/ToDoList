@@ -22,7 +22,8 @@ const SelectList = () => {
   return (
     <Select
       style={{
-        width: 300,
+        // width: 300,
+        margin: '10px 0',
       }}
       placeholder="выбрать категорию"
       dropdownRender={(menu) => (

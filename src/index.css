@@ -25,6 +25,7 @@ body {
 
 @import url('../src/blocks/button/button.css');
 @import url('../src/blocks/task-item/task-item.css');
+@import url('../src/blocks/edit-form/edit-form.css');
 
 /* 
 

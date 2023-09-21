@@ -1,10 +1,14 @@
 .button {
   color: var(--font-color);
 
+  width: max-content;
+  margin: auto;
+
   /* border: 1px solid var(--font-color);
-  border-radius: 50%; */
+  border-radius: 15%; */
+
+  /* padding: 6px; */
   border: none;
-  padding: 6px;
 
   background-color: var(--buttons-color);
   font-size: 15px;
@@ -15,5 +19,6 @@
 .button:hover {
   cursor: pointer;
   color: var(--focuc-color);
-  border: 2px solid var(--focuc-color);
+  border: 1px solid var(--font-color);
+  border-radius: 5px;
 }

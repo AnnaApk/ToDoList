@@ -1,0 +1,26 @@
+.container {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background-color: aliceblue;
+
+  /* background-color: rgba(0, 0, 0, .5); */
+}
+
+.form {
+  width: 80%;
+  height: min-content;
+  display: flex;
+  flex-direction: column;
+}
+
+.edit-form {
+  padding-top: 20vh;
+  margin: auto;
+}
+
+.edit-form_field {
+  margin: 10px 0;
+}
