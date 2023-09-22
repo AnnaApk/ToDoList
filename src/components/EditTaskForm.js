@@ -4,7 +4,7 @@ import { DatePicker, Input } from 'antd';
 import SelectList from "./SelectList";
 
 export default function EditTaskForm ({editData, handleClose, handleEditTask}) {
-  console.log('1',editData)
+
   const [taskInput, setTaskInput] = useState(editData.task);
   const [date, setDate] = useState(editData.date);
 

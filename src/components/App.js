@@ -1,5 +1,4 @@
 import Form from "./Form";
-
 import api from "../service/firebase";
 import { useEffect, useState } from "react";
 import EditTaskForm from "./EditTaskForm";
@@ -7,7 +6,6 @@ import EditTaskForm from "./EditTaskForm";
 function App() {
 
   const [tasks, setTasks] = useState(null);
-
   const [ isEditTask, setIsEditTask ] = useState(false);
   const [ editData, setEditData] = useState(null);
 
@@ -21,7 +19,7 @@ function App() {
       .then(res => {
         setTasks(res);
       })
-      .catch(err => alert(err + '19'))
+      .catch(err => alert(err))
   }
 
   const addTask = ({task, date}) => {
@@ -61,14 +59,19 @@ function App() {
   }
 
   const handleEditTask = ({taskInput, date}) => {
-    console.log('edit',editData.id, taskInput, date)
     const taskId = editData.id
     api.patchTask({id:taskId, task:taskInput, date})
-    .then(res => console.log('patch', res))
+    .then(res => dbTasks())
     .catch(err => alert(err));
-    dbTasks();
     setIsEditTask(false);
     setEditData(null);
+  }
+
+  const toggleIsDoneTask = (arg) => {
+    let {id, isDone} = arg
+    api.patchTask({id, isDone: !isDone})
+    .then(res => dbTasks())
+    .catch(err => alert(err));
   }
 
   useEffect(() => {
@@ -90,15 +93,18 @@ function App() {
 
       <ul style={{padding: '0',}}>
         { tasks ?
-          tasks.map(([id, {task, date, done}]) => {
-            // console.log('date', date)
-            // console.log('year', new Date(date).getFullYear())
+          tasks.map(([id, {task, date, isDone}]) => {
+
+            console.log('map', !isDone)
+
+            const buttonDone = isDone ? 'AlredyDONE' : 'NotYet'
+
           return (
             <li key={id} className="task-item">
               <p className="task-item_title"> {task} </p>
-              <p>{date ? new Date(date).getFullYear() + '-' + new Date(date).getMonth() + '-' + new Date(date).getDate() : '0000-00-00'}</p>
-              <button className="button" onClick={() => openFormEditTask({id, task, date, done})}>EDIT</button>
-              <button className="button" onClick={() => done = !done}>DONE</button>
+              <p>{date ? new Date(date).getFullYear() + '-' + (new Date(date).getMonth() + 1) + '-' + new Date(date).getDate() : '0000-00-00'}</p>
+              <button className="button" onClick={() => openFormEditTask({id, task, date})}>EDIT</button>
+              <button className="button" onClick={() => toggleIsDoneTask({id, isDone})}>{buttonDone}</button>
               <button className="button" onClick={() => removeTask({id})}>DEL</button>
             </li>
           )

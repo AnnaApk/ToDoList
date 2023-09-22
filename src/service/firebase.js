@@ -11,17 +11,18 @@ class Api {
   } 
 
   getTasks() {
-    //console.log('req')
+
     return fetch(`${this._baseUrl}tasks.json`, {
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        // 'Authorization': 'key=1:901218266786:web:8390064646181538fbb1fb'
       }
     })
     .then(this._getResponseData)
   }
 
-  addTask({task, dateAdding, date, owner, isDone}) {
-    //console.log('req')
+  addTask({task, date, dateAdding, owner, isDone}) {
+
     return fetch(`${this._baseUrl}tasks.json`, {
       method: 'POST',
       headers: {
@@ -39,7 +40,7 @@ class Api {
   }
 
   deleteTask({id}) {
-    //console.log('req', id)
+
     return fetch(`${this._baseUrl}tasks/${id}.json`, {
       method: 'DELETE',
       headers: {
@@ -49,18 +50,17 @@ class Api {
     .then(this._getResponseData)
   }
 
-  patchTask({id, task, date}) {
-    console.log('req', id, date)
+  // patchTask({id, task, date}) {
+    patchTask({id, ...rest}) {
+
+      console.log(rest)
+
     return fetch(`${this._baseUrl}tasks/${id}.json`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({
-        id,
-        task,
-        date,
-      })
+      body: JSON.stringify(rest)
     })
     .then(this._getResponseData)
   }
